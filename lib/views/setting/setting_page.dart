@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,11 @@ class SettingPage extends StatelessWidget {
             Switch(
               value: isDarkTheme,
               onChanged: (value) {
+                log('Start Toggle Theme');
                 themeProvider.setDarkMode(value);
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  log('Finish Toggle Theme');
+                });
               },
             ),
           ],

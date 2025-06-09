@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/views/movie/component/movie_card.dart';
 import 'package:moviedb_provider/providers/movie_provider.dart';
@@ -46,13 +47,32 @@ class MoviePage extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
-                    return MovieCard(movie: movies[index]);
+                    final movieCard = MovieCard(movie: movies[index]);
+                    if (index == 4) {
+                      log('Build Movie');
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        log('Finish Build Movie');
+                      });
+                    }
+                    return movieCard;
                   },
                 ),
                 // child: SingleChildScrollView(
                 //   child: Column(
                 //     children:
-                //         movies.map((movie) => MovieCard(movie: movie)).toList(),
+                //         movies.asMap().entries.map((entry) {
+                //           final index = entry.key;
+                //           final movie = entry.value;
+                //           if (index == 0) {
+                //             log('Build Movie');
+                //           }
+                //           if (index == movies.length - 1) {
+                //             WidgetsBinding.instance.addPostFrameCallback((_) {
+                //               log('Finish Build Movie');
+                //             });
+                //           }
+                //           return MovieCard(movie: movie);
+                //         }).toList(),
                 //   ),
                 // ),
               ),

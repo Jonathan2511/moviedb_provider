@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/providers/search_provider.dart';
 import 'package:moviedb_provider/views/movie/component/movie_card.dart';
@@ -50,9 +51,33 @@ class SearchPage extends StatelessWidget {
                     : ListView.builder(
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
-                        return MovieCard(movie: searchResults[index]);
+                        final movieCard = MovieCard(
+                          movie: searchResults[index],
+                        );
+                        if (index == 0) {
+                          log('Build Search Result');
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            log('Finish Search Result');
+                          });
+                        }
+                        return movieCard;
                       },
                     ),
+            // : SingleChildScrollView(
+            //   child: Builder(
+            //     builder: (context) {
+            //       log('Build Search Result');
+            //       final cards =
+            //           searchResults
+            //               .map((movie) => MovieCard(movie: movie))
+            //               .toList();
+            //       WidgetsBinding.instance.addPostFrameCallback((_) {
+            //         log('Finish Search Result');
+            //       });
+            //       return Column(children: cards);
+            //     },
+            //   ),
+            // ),
           ),
         ],
       ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/repositories/movie_repository.dart';
 import '../models/movie_model.dart';
@@ -11,7 +13,7 @@ class MoviesProvider extends ChangeNotifier {
 
   MoviesProvider(this._movieService) {
     // Default fetch 20 movies when provider is created
-    fetchMovies(1000);
+    fetchMovies(20);
   }
 
   // Getters
@@ -36,6 +38,7 @@ class MoviesProvider extends ChangeNotifier {
       }
     } catch (e) {
       _error = 'Error fetching movies: $e';
+      log("$_error");
     } finally {
       _isLoading = false;
       notifyListeners();

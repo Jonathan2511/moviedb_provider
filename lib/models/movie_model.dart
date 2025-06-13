@@ -19,8 +19,11 @@ class Movie {
     return Movie(
       id: json['id'],
       title: json['title'],
-      posterPath: 'https://image.tmdb.org/t/p/w500${json['poster_path']}',
-      rating: (json['vote_average'] as num).toDouble(),
+      posterPath:
+          json['poster_path'] != null
+              ? 'https://image.tmdb.org/t/p/w500${json['poster_path']}'
+              : '',
+      rating: (json['vote_average'] as num?)?.toDouble() ?? 0.0,
       genres: [],
       overview: json['overview'],
     );

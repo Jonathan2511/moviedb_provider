@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+final themeChangeStopwatch = Stopwatch();
+
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/repositories/movie_repository.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +31,7 @@ void main() {
         // Navigation provider
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
 
-        // Search provNider
+        // Search provider
         ChangeNotifierProxyProvider<MoviesProvider, SearchProvider>(
           create: (context) => SearchProvider(context),
           update: (context, _, previous) => previous ?? SearchProvider(context),
@@ -45,6 +47,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (themeChangeStopwatch.isRunning) {
+      themeChangeStopwatch.stop();
+      log(
+        'Finish Toggle Theme in: ${themeChangeStopwatch.elapsedMilliseconds} ms',
+      );
+    }
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, _) {
         return MaterialApp(

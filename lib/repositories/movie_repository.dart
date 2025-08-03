@@ -4,7 +4,7 @@ import '../models/movie_model.dart';
 class MovieService {
   final Dio _dio = Dio();
   final String _baseUrl = 'https://api.themoviedb.org/3/movie/popular';
-  final String _apiKey = '-';
+  final String _apiKey = '118910ebd93a2ef0d7e36f033747b6c8';
 
   Future<List<Movie>> fetchMovies({int page = 1}) async {
     final response = await _dio.get(

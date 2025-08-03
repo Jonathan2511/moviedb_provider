@@ -48,7 +48,7 @@ class MoviePage extends StatelessWidget {
                   itemCount: movies.length,
                   itemBuilder: (context, index) {
                     final movieCard = MovieCard(movie: movies[index]);
-                    if (index == 4) {
+                    if (index == 6) {
                       log('Build Movie');
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         log('Finish Build Movie');

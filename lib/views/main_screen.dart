@@ -12,6 +12,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Mengambil nilai index saat ini dari provider
     final navigationProvider = Provider.of<NavigationProvider>(context);
     final selectedIndex = navigationProvider.currentIndex;
 
@@ -19,6 +20,7 @@ class MainScreen extends StatelessWidget {
       body: _pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
+        // Update index menggunakan provider
         onTap: (index) {
           navigationProvider.setIndex(index);
         },

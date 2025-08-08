@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:moviedb_provider/repositories/movie_repository.dart';
 import 'package:provider/provider.dart';
@@ -47,21 +45,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (themeChangeStopwatch.isRunning) {
-      themeChangeStopwatch.stop();
-      log(
-        'Finish Toggle Theme in: ${themeChangeStopwatch.elapsedMilliseconds} ms',
-      );
-    }
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, _) {
         return MaterialApp(
           title: 'Movie Catalog',
           theme:
               themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
-          // theme: ThemeData.light(),
-          // darkTheme: ThemeData.dark(),
-          // themeMode: ThemeMode.system,
           home: const MainScreen(),
         );
       },

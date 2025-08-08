@@ -25,9 +25,6 @@ class SettingPage extends StatelessWidget {
             Switch(
               value: isDarkTheme,
               onChanged: (value) {
-                themeChangeStopwatch
-                  ..reset()
-                  ..start();
                 log('Start Toggle Theme');
                 themeProvider.setDarkMode(value);
                 WidgetsBinding.instance.addPostFrameCallback((_) {
